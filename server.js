@@ -5,14 +5,15 @@ var Game = require('./game.js')
 var players = { };
 var io = require('socket.io').listen(server);
 var _ = require('underscore');
+var methodOverride = require('method-override');
+var bodyParser = require('body-parser')
 
 server.listen(process.env.PORT || 3000);
 
 app.set('view engine', 'ejs');
 app.set('view options', { layout: false });
-app.use(express.methodOverride());
-app.use(express.bodyParser());  
-app.use(app.router);
+app.use(methodOverride());
+app.use(bodyParser());
 app.use('/public', express.static('public'));
 
 function json(o, res) {
